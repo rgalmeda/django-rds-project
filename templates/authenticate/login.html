@@ -1,0 +1,75 @@
+<!-- login.html -->
+{% extends 'login_base.html' %}
+
+{% block title %} Login Page {% endblock %}
+
+{% block content %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+         {% endif %}
+        {% if message.tags == "error" %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+
+<div class="container mt-4">
+    <p class="login-box-msg">Sign in to start your session</p>
+
+
+      <form  method="POST">
+            {% csrf_token %}
+
+        <div class="input-group mb-3">
+
+          <input type="text" name="username" class="form-control" placeholder="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+
+          <input type="password"  name="password" class="form-control" placeholder="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+                <a href="{% url 'signup' %}" >
+                <i class="fa fa-edit mr-2"></i> Sign up
+                </a>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+</div>
+
+
+
+{% endblock %}

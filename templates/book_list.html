@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Book List{% endblock %}
+
+{% block content %}
+  <!-- Default box -->
+<br><br>
+<a href="{% url 'book_create' %}" class="btn btn-success"><i class=" fa fa-plus"></i> Add New Book</a>
+<br><br>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><i class=" fa fa-book"></i> Book List</h3>
+
+          <div class="card-tools">
+
+          </div>
+        </div>
+        <div class="card-body">
+
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ISBN No.</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Year</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+       <td>{{ book.isbn }}</td>
+      <td>{{ book.tittle }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.publication_year }}</td>
+
+
+      <td>
+        <a href="{% url 'book_update' book.pk %}" class="btn btn-sm btn-primary">  <i class="fa  fa-plus"></i>Edit</a>
+        <a href="{% url 'book_delete' book.pk %}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "login_base.html" %}
+
+{% block title %}Register Page{% endblock %}
+
+{% block content %}
+
+<div xmlns="http://www.w3.org/1999/html">
+    <div style="text-align:center">
+           <span >This is my <strong>Register</strong> page</span>
+    </div>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+
+<!--        {{ form.as_p }}-->
+          <table class="table table-bordered">
+            <tr>
+                <td>Username</td>
+                <td>
+                      <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    <span class="text-danger">{{ form.username.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td>First name</td>
+                <td>
+                       <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                    <span class="text-danger">{{ form.first_name.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+               <tr>
+                <td>Last name</td>
+                <td>
+                       <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                    <span class="text-danger">{{ form.last_name.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+                 <tr>
+                <td>Email</td>
+                <td>
+                       <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <span class="text-danger">{{ form.email.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+                  <tr>
+                <td>Password</td>
+                <td>
+                       <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                    <span class="text-danger">{{ form.password1.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+                  <tr>
+                <td>Retype Password</td>
+                <td>
+                       <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                    <span class="text-danger">{{ form.password2.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+          </table>
+
+           <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               I agree to the <a href="#">terms</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+               <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+
+
+    </form>
+       <br>
+    </div>
+{% endblock %}

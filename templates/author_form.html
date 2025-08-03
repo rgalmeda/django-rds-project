@@ -1,0 +1,90 @@
+<!-- author_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if form.instance.pk %}Update Author{% else %} Add New Author{% endif %}</h2>
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"> <i class="fas fa-edit"></i> Form</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+         <table class="table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>
+                    <div class="form-group">
+                    <!--{{ form.name.label_tag }}-->
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <span class="text-danger">{{ form.name.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td>Biography</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.biography.label_tag }}-->
+                    {{ form.biography }}
+                    {% if form.biography.errors %}
+                    <span class="text-danger">{{ form.biography.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td>Contact No.</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.biography.label_tag }}-->
+                    {{ form.contact_number  }}
+                    {% if form.contact_number.errors %}
+                    <span class="text-danger">{{ form.contact_number.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+               <tr>
+                <td>Birth Date</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.birth_date.label_tag }}-->
+                    {{ form.birth_date }}
+                    {% if form.birth_date.errors %}
+                    <span class="text-danger">{{ form.birth_date.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td colspan=""><button type="submit" class="btn btn-primary">{% if form.instance.pk %}Update{% else %}Create{% endif %} Author</button></td>
+            </tr>
+         </table>
+
+    </form>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+
+</div>
+{% endblock %}

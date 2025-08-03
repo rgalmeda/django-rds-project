@@ -1,0 +1,105 @@
+<!-- book_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>
+        {% if form.instance.pk %}
+
+            Update Book
+        {% else %}
+            Add New Book
+        {% endif %}
+     </h2>
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fas fa-edit"></i> Form</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+              <form method="post">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <tr>
+                <td>Tittle</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.tittle.label_tag }}-->
+                    {{ form.tittle }}
+                    {% if form.tittle.errors %}
+                    <span class="text-danger">{{ form.tittle.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+              <tr>
+                <td>Author</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.author.label_tag }}-->
+                    {{ form.author }}
+                    {% if form.author.errors %}
+                    <span class="text-danger">{{ form.author.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Publication Year</td>
+                <td>
+                    <div class="form-group">
+<!--                    {{ form.publication_year.label_tag }}-->
+                    {{ form.publication_year }}
+                    {% if form.publication_year.errors %}
+                        <span class="text-danger">{{ form.publication_year.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+               <tr>
+                <td>ISBN No.</td>
+                <td>
+                    <div class="form-group">
+                    <!--            {{ form.isbn.label_tag }}-->
+                    {{ form.isbn }}
+                    {% if form.isbn.errors %}
+                    <span class="text-danger">{{ form.isbn.errors }}</span>
+                    {% endif %}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-person"></i>
+                        {% if form.instance.pk %}
+                           Update
+                        {% else %}
+                            Submit
+                        {% endif %} Book
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+</div>
+{% endblock %}

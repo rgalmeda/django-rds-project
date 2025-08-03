@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+
+{% block title %}Author List{% endblock %}
+
+{% block content %}
+<h2>Author List</h2>
+
+<a href="{% url 'author_create' %}" class="btn btn-success"><i class="fa fa-plus"></i> Add New Author</a>
+
+<!-- Search Form -->
+<form method="get" class="form-inline mb-3">
+    {% for field in filter.form %}
+        <div class="form-group mx-2">
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mx-2"><i class="fa fa-search"></i> Search</button>
+</form>
+
+
+<!-- Card Container -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><i class="fa fa-book"></i> Authors</h3>
+    </div>
+
+    <div class="card-body">
+       {% render_table table %}
+    </div>
+
+   <div class="card-footer">
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if table.paginator.num_pages > 1 %}
+            <nav>
+                <ul class="pagination">
+                    {% if table.page.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page=1">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ table.page.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <a class="page-link" href="#">{{ table.page.number }}</a>
+                    </li>
+
+                    {% if table.page.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ table.page.next_page_number }}">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ table.paginator.num_pages }}">Last</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</div>
+
+</div>
+{% endblock %}
